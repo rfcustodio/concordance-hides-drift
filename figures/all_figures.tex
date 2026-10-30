@@ -1,0 +1,20 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=18mm]{geometry}
+\input{cdstyle.tex}
+\pagestyle{empty}
+\newcommand{\fig}[2]{\begin{figure}[p]\centering\resizebox{\linewidth}{!}{\input{#1.tikz}}\caption*{\small #2}\end{figure}\clearpage}
+\usepackage{caption}
+\begin{document}
+\fig{fig1_framework}{Fig.~1. Error-interception structure and what each monitoring signal observes.}
+\fig{fig2_landscape}{Fig.~2. Exact risk over drift levels and share due to interaction (E1).}
+\fig{fig3_identifiability}{Fig.~3. Concordance does not identify risk (E2).}
+\fig{fig4_incorporation}{Fig.~4. Incorporation bias of report-referenced AI sensitivity (E3).}
+\fig{fig5_timecourse}{Fig.~5. Masked coupled drift: risk by strategy and monitored signals (E4, S4).}
+\fig{fig6_decomposition}{Fig.~6. Exact risk decomposition over time, coupled drift, no monitoring (E4, S3).}
+\fig{fig7_excess}{Fig.~7. Excess harm after drift onset by scenario and strategy (E4).}
+\fig{fig8_audit}{Fig.~8. Audit and sentinel design: detection within one year (E5).}
+\fig{fig9_cycle}{Fig.~9. Algorithmovigilance cycle and imaging informatics data sources.}
+\end{document}

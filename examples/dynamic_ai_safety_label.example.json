@@ -1,0 +1,49 @@
+{
+  "label_version": "1.3.0",
+  "issued": "2027-06-30",
+  "supersedes": "1.2.0",
+  "device": {
+    "name": "Example chest radiograph triage AI (fictional)",
+    "manufacturer": "Example Vendor (fictional)",
+    "model_version": "4.2.1",
+    "locked_or_adaptive": "locked",
+    "intended_use": "Prioritisation of adult frontal chest radiographs with suspected pneumothorax for radiologist review.",
+    "regulatory_status": [{"jurisdiction": "BR-ANVISA", "identifier": "EXAMPLE-0000", "pccp": false}]
+  },
+  "deployment": {"site": "Example radiology department", "modality": "DX", "go_live": "2026-07-01", "studies_per_day": 150, "integration": ["DICOM_SR", "IHE_AIR", "HL7_FHIR"]},
+  "validation": {
+    "population": "Adults, two hospitals, 2024 to 2025",
+    "reference_standard": "Consensus of two thoracic radiologists blinded to AI",
+    "silent_trial": true,
+    "metrics": {"sensitivity": {"value": 0.91, "ci95": [0.88, 0.94], "n": 410}, "specificity": {"value": 0.94, "ci95": [0.93, 0.95], "n": 3690}}
+  },
+  "algorithmic_surveillance": {
+    "reference_source": "both",
+    "window": {"start": "2027-04-01", "end": "2027-06-30"},
+    "metrics": {"sensitivity": {"value": 0.84, "ci95": [0.78, 0.89], "n": 180, "baseline": 0.91}},
+    "case_mix_shift": "New portable detector introduced in ICU in March 2027",
+    "status": "alarm_under_review"
+  },
+  "behavioural_surveillance": {
+    "method": "both",
+    "window": {"start": "2027-04-01", "end": "2027-06-30"},
+    "interception_of_ai_errors": {"value": 0.31, "ci95": [0.22, 0.41], "n": 96, "baseline": 0.42},
+    "harmful_override_rate": {"value": 0.01, "ci95": [0.005, 0.02], "n": 1350},
+    "override_rate": {"value": 0.018, "ci95": [0.015, 0.021], "n": 13500},
+    "median_read_time_s": 41,
+    "n_readers": 14,
+    "reporting_level": "service",
+    "status": "alarm_under_review"
+  },
+  "required_verification": {
+    "statement": "AI-negative studies from portable ICU detectors require an independent read before sign-off.",
+    "independent_read_required_for": ["portable ICU radiographs", "post-procedural studies"]
+  },
+  "known_limitations": ["Reduced sensitivity for small apical pneumothorax", "Not validated in patients under 18"],
+  "change_log": [
+    {"date": "2027-05-20", "event": "alarm_A", "action": "Root-cause review of new detector; manufacturer notified"},
+    {"date": "2027-06-10", "event": "alarm_B", "action": "Read-first workflow reinstated for ICU studies; staffing review"}
+  ],
+  "next_review": "2027-09-30",
+  "signature": "eyJhbGciOiJFUzI1NiJ9..example-only"
+}

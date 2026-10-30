@@ -1,0 +1,48 @@
+% Shared style for all figures (pgfplots 1.18).  Colour-blind-safe palette
+% (Okabe and Ito).  Included by every standalone figure and by the manuscript.
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric}
+\usepgfplotslibrary{groupplots,fillbetween,colormaps}
+
+\providecommand{\datapath}{../results}
+
+\definecolor{okBlack}{HTML}{000000}
+\definecolor{okOrange}{HTML}{E69F00}
+\definecolor{okSky}{HTML}{56B4E9}
+\definecolor{okGreen}{HTML}{009E73}
+\definecolor{okYellow}{HTML}{F0E442}
+\definecolor{okBlue}{HTML}{0072B2}
+\definecolor{okVerm}{HTML}{D55E00}
+\definecolor{okPurple}{HTML}{CC79A7}
+\definecolor{okGrey}{HTML}{8C8C8C}
+
+\pgfplotsset{
+  cd/base/.style={
+    tick label style={font=\scriptsize},
+    label style={font=\small},
+    title style={font=\small\bfseries},
+    legend style={font=\scriptsize, draw=none, fill=none},
+    legend cell align=left,
+    axis line style={okGrey},
+    major tick style={okGrey},
+    every axis plot/.append style={line join=round},
+  },
+  colormap={cdrisk}{rgb255=(255,255,255) rgb255=(253,219,199) rgb255=(244,165,130) rgb255=(214,96,77) rgb255=(178,24,43) rgb255=(103,0,31)},
+  colormap={cdshare}{rgb255=(247,252,253) rgb255=(204,236,230) rgb255=(102,194,164) rgb255=(35,139,69) rgb255=(0,68,27)},
+  % strategy styles (identical in every figure)
+  st none/.style={okBlack, thick},
+  st report/.style={okVerm, thick, dashed},
+  st conc/.style={okOrange, thick, dash dot},
+  st truth/.style={okSky, thick, densely dotted},
+  st audit/.style={okPurple, thick},
+  st dual/.style={okGreen, very thick},
+}
+\tikzset{
+  cd box/.style={draw=okGrey, rounded corners=2pt, fill=white, align=center,
+                 font=\footnotesize, inner sep=3pt, minimum height=8mm},
+  cd arrow/.style={-{Latex[length=2mm]}, thick, okGrey!80!black},
+  cd note/.style={font=\scriptsize, align=center, text=okBlack!80},
+}

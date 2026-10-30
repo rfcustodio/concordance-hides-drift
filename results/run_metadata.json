@@ -1,0 +1,101 @@
+{
+  "params": {
+    "stratum_weights": [
+      0.5,
+      0.35,
+      0.15
+    ],
+    "prevalence": 0.1,
+    "severity_fn": 1.0,
+    "severity_fp": 0.1,
+    "cases_per_day": 150,
+    "se_ai0": [
+      0.97,
+      0.9,
+      0.72
+    ],
+    "sp_ai0": [
+      0.97,
+      0.93,
+      0.85
+    ],
+    "d_se_ai": [
+      0.05,
+      0.2,
+      0.25
+    ],
+    "d_sp_ai": [
+      0.01,
+      0.03,
+      0.05
+    ],
+    "drift_ramp_days": 180,
+    "se_h0": [
+      0.95,
+      0.86,
+      0.66
+    ],
+    "sp_h0": [
+      0.97,
+      0.93,
+      0.86
+    ],
+    "rho_r": 0.85,
+    "rho_w": 0.35,
+    "v_max": 0.95,
+    "v_min": 0.15,
+    "trust_eta": 0.02,
+    "trust_lambda": 4.0,
+    "workload_effect": 0.6,
+    "workload_ramp_days": 180,
+    "d_se_h": [
+      0.02,
+      0.08,
+      0.12
+    ],
+    "d_sp_h": [
+      0.01,
+      0.03,
+      0.05
+    ],
+    "deskill_tau_days": 180.0,
+    "horizon_days": 1095,
+    "onset_day": 365,
+    "baseline_days": 182,
+    "audit_fraction": 0.03,
+    "sentinels_per_day": 0.0,
+    "truth_lag_days": 90,
+    "truth_completeness": 0.8,
+    "adjudication_days": 30,
+    "concordance_investigation_days": 60,
+    "false_alarm_target": 0.05,
+    "shift_fn_abs": 0.05,
+    "shift_conc_ratio": 1.5,
+    "shift_ai_err_abs": 0.03,
+    "shift_miss_abs": 0.15
+  },
+  "replicates": 400,
+  "calibration_replicates": 1000,
+  "masked_workload_effect": 0.34,
+  "numpy": "2.5.3",
+  "pandas": "3.0.5",
+  "E1": {
+    "R0_per_1000": 12.612144072677765,
+    "max_abs_residual": 7.047314121155779e-18,
+    "R_corner": 27.214751862113904,
+    "R_additive_corner": 24.1875932116781
+  },
+  "E2": {
+    "baseline_concordance": 0.9696935539109727,
+    "risk_at_a0": 12.612144072677767,
+    "risk_at_max_a_same_concordance": 24.712769848067573,
+    "a_max_same_concordance": 1.0
+  },
+  "E3": {
+    "true_sens_drifted": 0.7755,
+    "report_sens_drifted_at_v_eq": 0.9021378011339795,
+    "report_sens_drifted_at_v_0.2": 0.956572521910208,
+    "true_sens_baseline": 0.9080000000000001
+  },
+  "runtime_s": 144.96452856063843
+}

@@ -1,0 +1,33 @@
+% Fig. 1. Error-interception structure of an AI-assisted read and what each
+% monitoring signal can observe.
+\begin{tikzpicture}[node distance=5mm and 9mm]
+  \node[cd box, minimum width=21mm] (case) {Case $x$\\(e.g.\ imaging study)};
+  \node[cd box, right=of case, minimum width=22mm, fill=okSky!12] (ai) {AI output\\error $e_t(x)$};
+  \node[cd box, right=14mm of ai, minimum width=31mm, fill=okOrange!14] (rad) {Clinician (e.g.\ radiologist)\\verifies with prob.\ $v_t$\\unassisted accuracy $h_t(x)$};
+  \node[cd box, right=14mm of rad, minimum width=22mm] (rep) {Final decision\\(e.g.\ report, DICOM SR)};
+  \node[cd box, right=of rep, minimum width=20mm, fill=okVerm!10] (harm) {Patient harm\\severity $S(x)$};
+  \draw[cd arrow] (case) -- (ai);
+  \draw[cd arrow] (ai) -- (rad);
+  \draw[cd arrow] (rad) -- (rep);
+  \draw[cd arrow] (rep) -- (harm);
+  \node[cd note, below=0.5mm of $(rad.east)!0.5!(rep.west)$] {$c_t,\ o_t$};
+
+  \node[cd note, above=6mm of ai, text=okBlue, text width=30mm] (A) {\textbf{Algorithmic drift} $\Delta e_t$\\acquisition, case mix, labels};
+  \node[cd note, above=6mm of rad, text=okVerm, text width=36mm] (B) {\textbf{Clinical behaviour drift}\\$\Delta c_t,\ \Delta o_t$: trust, workload, deskilling};
+  \draw[-{Latex[length=1.6mm]}, okBlue, thick] (A) -- (ai);
+  \draw[-{Latex[length=1.6mm]}, okVerm, thick] (B) -- (rad);
+  \node[cd note, above=6mm of $(rep.north)!0.5!(harm.north)$] {$R_t=\mathbb{E}\big[S\,\{e_t(1-c_t)+(1-e_t)\,o_t\}\big]$};
+
+  \draw[cd arrow, dashed, okGrey] (rep.south) -- ++(0,-5mm) -| (ai.south);
+  \node[cd note, below=6mm of rad] {final decisions reused as labels for recalibration or retraining (updated models only)};
+
+  \node[below=13mm of rad, anchor=north, align=left, font=\scriptsize, draw=okGrey!60, rounded corners=2pt, inner sep=4pt] {%
+    \begin{tabular}{@{}l@{\quad}l@{\quad}l@{}}
+      \textbf{Monitoring signal} & \textbf{Estimates} & \textbf{Separates $e$ from $c$?}\\[1pt]
+      AI vs.\ final decision & $\mathbb{E}[e\,c+(1-e)\,o]$ & no; looks better as $c$ falls\\
+      Concordance (override rate) & $1-\mathbb{E}[e\,c+(1-e)\,o]$ & no\\
+      Delayed reference truth & $\mathbb{E}[e]$ on positives, lagged & $e$ only\\
+      AI-blinded audit double read & $\mathbb{E}[e]$, and $c$ on audited errors & yes, but costly\\
+      Projected sentinel cases & $c$ on known AI errors & $c$ only, efficiently
+    \end{tabular}};
+\end{tikzpicture}

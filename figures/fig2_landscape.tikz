@@ -1,0 +1,20 @@
+% Fig. 2. Exact risk and the interaction share over drift levels (E1).
+\begin{tikzpicture}
+\begin{groupplot}[cd/base,
+  group style={group size=2 by 1, horizontal sep=30mm, ylabels at=edge left},
+  width=54mm, height=50mm, view={0}{90},
+  xmin=0, xmax=1, ymin=0, ymax=1, enlargelimits=false, axis on top,
+  xlabel={Algorithmic drift level $a$}, ylabel={Workload level $w$ (verification loss)},
+  colorbar, colorbar style={width=2.5mm, tick label style={font=\scriptsize}, ylabel style={font=\scriptsize}},
+]
+\nextgroupplot[title={(a) Risk $R$ per 1000 cases}, colormap name=cdrisk,
+  colorbar style={ylabel={$R$ per 1000}}]
+  \addplot3[surf, shader=interp, mesh/cols=41, point meta=explicit]
+    table[x=a, y=w, z=R, meta=R, col sep=comma] {\datapath/e1_landscape.csv};
+  \node[font=\scriptsize, fill=white, inner sep=1pt, anchor=south west] at (axis cs:0.02,0.02) {baseline $R_0$};
+\nextgroupplot[title={(b) Share of excess risk due to interaction}, colormap name=cdshare,
+  colorbar style={ylabel={$I/(R-R_0)$}}, point meta min=0, point meta max=0.3]
+  \addplot3[surf, shader=interp, mesh/cols=41, point meta=explicit]
+    table[x=a, y=w, z=interaction_share, meta=interaction_share, col sep=comma] {\datapath/e1_landscape.csv};
+\end{groupplot}
+\end{tikzpicture}

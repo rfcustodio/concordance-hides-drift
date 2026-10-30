@@ -1,0 +1,27 @@
+{
+  "none|()": {},
+  "report_referenced|()": {
+    "rep_fn": 6.783493796306699
+  },
+  "concordance|()": {
+    "conc_up": 7.984758370538498,
+    "conc_down": 7.8742601498735505
+  },
+  "delayed_truth|()": {
+    "truth_fn": 8.435385622924942
+  },
+  "dual_audit|(('audit_fraction', 0.03), ('sentinels_per_day', 2.0))": {
+    "aud_err": 15.161627338351062,
+    "aud_miss": 14.803190818569272,
+    "sent_miss": 10.458436542189217
+  },
+  "dual_audit|(('audit_fraction', 0.1), ('sentinels_per_day', 2.0))": {
+    "aud_err": 9.663649344966196,
+    "aud_miss": 11.988738784358912,
+    "sent_miss": 10.309583579295253
+  },
+  "dual_truth_sentinel|(('sentinels_per_day', 2.0),)": {
+    "truth_fn": 11.402337567649734,
+    "sent_miss": 9.707755430387778
+  }
+}

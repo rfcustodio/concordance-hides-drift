@@ -1,0 +1,14 @@
+{
+  "title": "When Concordance Hides Drift: simulation code, data, figures and label schema",
+  "upload_type": "software",
+  "license": "MIT",
+  "version": "1.0.0",
+  "creators": [
+    {"name": "Ralo e Borges, Carmem Lúcia", "orcid": "0009-0007-1140-0076", "affiliation": "InRad, Faculdade de Medicina, Universidade de São Paulo"},
+    {"name": "Cerri, Giovanni Guido", "orcid": "0000-0001-9174-1055", "affiliation": "InRad, Faculdade de Medicina, Universidade de São Paulo"},
+    {"name": "Custódio, Ricardo", "orcid": "0000-0001-9611-5694", "affiliation": "Departamento de Informática e Estatística, Universidade Federal de Santa Catarina"}
+  ],
+  "keywords": ["algorithmovigilance", "automation bias", "post-market surveillance", "medical imaging", "simulation"],
+  "grants": [],
+  "notes": "Supporting material for a manuscript submitted to the Journal of Imaging Informatics in Medicine. C.L.R.B. was supported by a doctoral scholarship from FAPESP, grant 2024/14707-3."
+}

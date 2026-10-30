@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite the article and this archive."
+title: "When Concordance Hides Drift: simulation code, data, figures and label schema"
+version: 1.0.0
+date-released: 2026-10-30
+license: MIT
+authors:
+  - family-names: Ralo e Borges
+    given-names: Carmem Lúcia
+    orcid: "https://orcid.org/0009-0007-1140-0076"
+    affiliation: "Instituto de Radiologia (InRad), Faculdade de Medicina, Universidade de São Paulo"
+  - family-names: Cerri
+    given-names: Giovanni Guido
+    orcid: "https://orcid.org/0000-0001-9174-1055"
+    affiliation: "Instituto de Radiologia (InRad), Faculdade de Medicina, Universidade de São Paulo"
+  - family-names: Custódio
+    given-names: Ricardo
+    orcid: "https://orcid.org/0000-0001-9611-5694"
+    affiliation: "Departamento de Informática e Estatística, Universidade Federal de Santa Catarina"
+repository-code: "https://github.com/rfcustodio/concordance-hides-drift"
+keywords: [algorithmovigilance, automation bias, post-market surveillance, medical imaging, simulation]
+preferred-citation:
+  type: article
+  title: "When Concordance Hides Drift: Jointly Monitoring Clinical AI Performance and Clinician Interception After Deployment, with an Application to Medical Imaging"
+  authors:
+    - family-names: Ralo e Borges
+      given-names: Carmem Lúcia
+    - family-names: Cerri
+      given-names: Giovanni Guido
+    - family-names: Custódio
+      given-names: Ricardo
+  journal: "Journal of Imaging Informatics in Medicine"
+  status: submitted
+  year: 2026

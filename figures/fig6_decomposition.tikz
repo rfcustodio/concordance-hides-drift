@@ -1,0 +1,17 @@
+% Fig. 6. Exact decomposition of risk over time, coupled drift without
+% monitoring (scenario S3, E4).
+\begin{tikzpicture}
+\begin{axis}[cd/base, width=96mm, height=56mm, xmin=0, xmax=1095, ymin=0,
+  xtick={0,365,730,1095}, xticklabels={0,1,2,3}, xlabel={Years since deployment},
+  ylabel={$R$ per 1000 cases}, stack plots=y, area style,
+  legend style={at={(1.03,0.5)}, anchor=west}, legend reversed]
+  \addplot[fill=okGrey!35, draw=none] table[x=day, y=R0, col sep=comma] {\datapath/e4_state_S3_coupled.csv} \closedcycle;
+  \addlegendentry{validated baseline $R_0$}
+  \addplot[fill=okBlue!55, draw=none] table[x=day, y=algorithmic, col sep=comma] {\datapath/e4_state_S3_coupled.csv} \closedcycle;
+  \addlegendentry{algorithmic main effect}
+  \addplot[fill=okOrange!65, draw=none] table[x=day, y=behavioural, col sep=comma] {\datapath/e4_state_S3_coupled.csv} \closedcycle;
+  \addlegendentry{behavioural main effect}
+  \addplot[fill=okVerm!80, draw=none] table[x=day, y=interaction, col sep=comma] {\datapath/e4_state_S3_coupled.csv} \closedcycle;
+  \addlegendentry{interaction $\mathbb{E}[S\,\Delta e\,(\Delta m-\Delta o)]$}
+\end{axis}
+\end{tikzpicture}

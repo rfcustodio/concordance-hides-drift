@@ -1,0 +1,37 @@
+% Fig. 5. Masked coupled drift (scenario S4): risk under each monitoring
+% strategy, and what the monitored signals show (E4).
+\begin{tikzpicture}
+\begin{groupplot}[cd/base,
+  group style={group size=2 by 1, horizontal sep=20mm},
+  width=66mm, height=54mm, xmin=0, xmax=1095,
+  xtick={0,365,730,1095}, xticklabels={0,1,2,3}, xlabel={Years since deployment}]
+\nextgroupplot[title={(a) Risk under each strategy}, ylabel={$R$ per 1000 cases},
+  ymin=10, ymax=26,
+  legend style={at={(0.5,-0.28)}, anchor=north, legend columns=1, font=\scriptsize}]
+  \draw[okGrey!40, fill=okGrey!10] (axis cs:365,10) rectangle (axis cs:545,26);
+  \addplot[st none]   table[x=day, y=none, col sep=comma] {\datapath/e4_traj_S4_masked.csv};
+  \addlegendentry{No monitoring}
+  \addplot[st report] table[x=day, y=report_referenced, col sep=comma] {\datapath/e4_traj_S4_masked.csv};
+  \addlegendentry{AI vs.\ decision}
+  \addplot[st conc]   table[x=day, y=concordance, col sep=comma] {\datapath/e4_traj_S4_masked.csv};
+  \addlegendentry{Concordance}
+  \addplot[st truth]  table[x=day, y=delayed_truth, col sep=comma] {\datapath/e4_traj_S4_masked.csv};
+  \addlegendentry{Delayed truth (A only)}
+  \addplot[st dual]   table[x=day, y=dual_truth_sent2, col sep=comma] {\datapath/e4_traj_S4_masked.csv};
+  \addlegendentry{Delayed truth + sentinels}
+  \node[font=\scriptsize, anchor=south, align=center] at (axis cs:455,10.3) {drift\\ramp};
+\nextgroupplot[title={(b) Signals without monitoring}, ylabel={Change from baseline (\%)},
+  ymin=-80, ymax=110,
+  legend style={at={(0.5,-0.28)}, anchor=north, legend columns=1, font=\scriptsize}]
+  \draw[okGrey!40, fill=okGrey!10] (axis cs:365,-80) rectangle (axis cs:545,110);
+  \addplot[okOrange, very thick] table[x=day, y=rel_disagreement, col sep=comma] {\datapath/e4_state_S4_masked_rel.csv};
+  \addlegendentry{AI/decision disagreement}
+  \addplot[okBlue, thick] table[x=day, y=rel_ai_error, col sep=comma] {\datapath/e4_state_S4_masked_rel.csv};
+  \addlegendentry{true AI error rate}
+  \addplot[okVerm, thick, dashed] table[x=day, y=rel_v, col sep=comma] {\datapath/e4_state_S4_masked_rel.csv};
+  \addlegendentry{verification probability}
+  \addplot[okBlack, thick, dotted] table[x=day, y expr={100*(\thisrow{R}/\thisrow{R0}-1)}, col sep=comma] {\datapath/e4_state_S4_masked_rel.csv};
+  \addlegendentry{risk}
+  \draw[okGrey] (axis cs:0,0) -- (axis cs:1095,0);
+\end{groupplot}
+\end{tikzpicture}

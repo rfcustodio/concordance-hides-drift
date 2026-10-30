@@ -1,0 +1,20 @@
+% Fig. 8. Audit design: probability of detecting each drift within one year
+% of onset, by number of AI-blinded double reads per day and sentinel rate (E5).
+\begin{tikzpicture}
+\begin{groupplot}[cd/base,
+  group style={group size=2 by 1, horizontal sep=16mm},
+  width=62mm, height=50mm, xmode=log, xmin=1.2, xmax=36, ymin=0, ymax=1.03,
+  xtick={1.5,3,7.5,15,30}, xticklabels={1.5,3,7.5,15,30},
+  xlabel={Audit double reads per day},
+  legend style={at={(0.97,0.03)}, anchor=south east}, unbounded coords=discard, filter discard warning=false]
+\nextgroupplot[title={(a) Algorithmic drift (S1)}, ylabel={P(detected within 1 year)}]
+  \addplot[okBlack, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent0.csv};
+  \addplot[okGreen, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent2.csv};
+  \addplot[okPurple, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent4.csv};
+\nextgroupplot[title={(b) Behavioural drift (S2)}, legend style={at={(0.97,0.55)}, anchor=east}]
+  \addplot[okBlack, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent0.csv};
+  \addplot[okGreen, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent2.csv};
+  \addplot[okPurple, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent4.csv};
+  \legend{0 sentinels/day, 2 sentinels/day, 4 sentinels/day}
+\end{groupplot}
+\end{tikzpicture}

@@ -1,0 +1,22 @@
+% Fig. 4. Incorporation bias of decision-referenced AI sensitivity (E3).
+\begin{tikzpicture}
+\begin{axis}[cd/base, width=84mm, height=58mm,
+  xmin=0, xmax=1, ymin=0.70, ymax=1.0,
+  xlabel={Clinician verification probability $v$},
+  ylabel={AI sensitivity},
+  legend style={at={(1.03,0.5)}, anchor=west},
+  x dir=reverse]
+  \addplot[okBlue, very thick] table[x=v, y=report_sens, col sep=comma,
+     restrict expr to domain={\thisrow{a}}{0:0}] {\datapath/e3_incorporation_bias.csv};
+  \addlegendentry{decision-referenced, no drift}
+  \addplot[okBlue, thick, dashed, forget plot] table[x=v, y=true_sens, col sep=comma,
+     restrict expr to domain={\thisrow{a}}{0:0}] {\datapath/e3_incorporation_bias.csv};
+  \addplot[okVerm, very thick] table[x=v, y=report_sens, col sep=comma,
+     restrict expr to domain={\thisrow{a}}{1:1}] {\datapath/e3_incorporation_bias.csv};
+  \addlegendentry{decision-referenced, full drift}
+  \addplot[okVerm, thick, dashed] table[x=v, y=true_sens, col sep=comma,
+     restrict expr to domain={\thisrow{a}}{1:1}] {\datapath/e3_incorporation_bias.csv};
+  \addlegendentry{true sensitivity (dashed)}
+  \draw[okGrey, thin] (axis cs:0.43,0.70) -- (axis cs:0.43,1.0) node[pos=0.06, right, font=\scriptsize]{baseline $v$};
+\end{axis}
+\end{tikzpicture}

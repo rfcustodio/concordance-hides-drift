@@ -1,0 +1,23 @@
+% Fig. 9. Algorithmovigilance cycle for an imaging department, with the
+% informatics data source behind each estimator.
+\begin{tikzpicture}[node distance=8mm and 8mm]
+  \node[cd box, text width=47mm, fill=okSky!10] (mon) {\textbf{1. Measure}\\$\hat e_t$: delayed truth, audit reads\\$\hat c_t$: sentinels, audit reads};
+  \node[cd box, text width=47mm, right=of mon] (det) {\textbf{2. Detect}\\separate charts for $A$ and $B$;\\false-alarm budget set in advance};
+  \node[cd box, text width=47mm, right=of det] (adj) {\textbf{3. Attribute}\\$A$: model, data, protocol\\$B$: workload, trust, skill};
+  \node[cd box, text width=47mm, below=of adj] (act) {\textbf{4. Act}\\$A$: recalibrate, restrict, suspend\\$B$: forcing functions, training, staffing};
+  \node[cd box, text width=47mm, below=of det, fill=okGreen!10] (lab) {\textbf{5. Update label}\\Dynamic AI Safety Label (JSON),\\new signed and dated version};
+  \draw[cd arrow] (mon) -- (det);
+  \draw[cd arrow] (det) -- (adj);
+  \draw[cd arrow] (adj) -- (act);
+  \draw[cd arrow] (act) -- (lab);
+  \draw[cd arrow] (lab.west) -| (mon.south);
+  \node[below=6mm of lab, anchor=north, font=\scriptsize, draw=okGrey!60, rounded corners=2pt, inner sep=4pt] {%
+    \begin{tabular}{@{}ll@{}}
+      \multicolumn{2}{@{}l}{\textbf{Data sources in the imaging department}}\\[1pt]
+      AI results & DICOM Structured Report; IHE AI Results (AIR) profile\\
+      Final decision & report in RIS; HL7 FHIR DiagnosticReport\\
+      Reader actions & viewer telemetry (open, accept, edit, time); FHIR AuditEvent\\
+      Reference truth & pathology, cancer registry, follow-up imaging\\
+      Sentinels & QA worklist cases with projected AI errors (synthetic or retrospective)
+    \end{tabular}};
+\end{tikzpicture}

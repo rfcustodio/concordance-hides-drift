@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rfcustodio/concordance-hides-drift/schema/dynamic_ai_safety_label.schema.json",
+  "title": "Dynamic AI Safety Label",
+  "description": "Versioned, machine-readable safety label for a deployed imaging AI system. Every release is a new immutable version. Behavioural fields report clinician interception of AI errors, estimated from audit reads or projected sentinel cases, never from AI/report concordance alone.",
+  "type": "object",
+  "required": ["label_version", "issued", "device", "deployment", "validation", "algorithmic_surveillance", "behavioural_surveillance", "required_verification", "change_log"],
+  "additionalProperties": false,
+  "properties": {
+    "label_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "issued": {"type": "string", "format": "date"},
+    "supersedes": {"type": ["string", "null"]},
+    "device": {
+      "type": "object",
+      "required": ["name", "manufacturer", "model_version", "intended_use", "regulatory_status"],
+      "properties": {
+        "name": {"type": "string"},
+        "manufacturer": {"type": "string"},
+        "model_version": {"type": "string"},
+        "locked_or_adaptive": {"enum": ["locked", "periodically_updated", "continuously_learning"]},
+        "intended_use": {"type": "string"},
+        "regulatory_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["jurisdiction", "identifier"],
+            "properties": {
+              "jurisdiction": {"type": "string"},
+              "identifier": {"type": "string"},
+              "pccp": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "required": ["site", "modality", "go_live"],
+      "properties": {
+        "site": {"type": "string"},
+        "modality": {"type": "string", "description": "DICOM modality code, e.g. CR, DX, MG, CT"},
+        "go_live": {"type": "string", "format": "date"},
+        "studies_per_day": {"type": "number", "minimum": 0},
+        "integration": {"type": "array", "items": {"enum": ["DICOM_SR", "IHE_AIR", "IHE_AIW-I", "HL7_FHIR", "proprietary"]}}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["population", "reference_standard", "metrics"],
+      "properties": {
+        "population": {"type": "string"},
+        "reference_standard": {"type": "string"},
+        "silent_trial": {"type": "boolean"},
+        "metrics": {"$ref": "#/$defs/metricSet"}
+      }
+    },
+    "algorithmic_surveillance": {
+      "type": "object",
+      "required": ["reference_source", "window", "metrics", "status"],
+      "properties": {
+        "reference_source": {"enum": ["delayed_truth", "ai_blinded_audit", "both"], "description": "Report-referenced estimates are not admissible here because they are biased by deference."},
+        "window": {"$ref": "#/$defs/window"},
+        "metrics": {"$ref": "#/$defs/metricSet"},
+        "case_mix_shift": {"type": "string"},
+        "status": {"$ref": "#/$defs/status"}
+      }
+    },
+    "behavioural_surveillance": {
+      "type": "object",
+      "required": ["method", "window", "interception_of_ai_errors", "status"],
+      "properties": {
+        "method": {"enum": ["ai_blinded_audit", "projected_sentinels", "both"]},
+        "window": {"$ref": "#/$defs/window"},
+        "interception_of_ai_errors": {"$ref": "#/$defs/estimate"},
+        "harmful_override_rate": {"$ref": "#/$defs/estimate"},
+        "override_rate": {"$ref": "#/$defs/estimate", "description": "Reported for context only; not interpretable alone."},
+        "median_read_time_s": {"type": "number", "minimum": 0},
+        "unassisted_competence": {"$ref": "#/$defs/estimate"},
+        "n_readers": {"type": "integer", "minimum": 0},
+        "reporting_level": {"enum": ["service", "team"], "description": "Individual-level results are excluded to avoid punitive use."},
+        "status": {"$ref": "#/$defs/status"}
+      }
+    },
+    "required_verification": {
+      "type": "object",
+      "required": ["statement"],
+      "properties": {
+        "statement": {"type": "string"},
+        "independent_read_required_for": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "known_limitations": {"type": "array", "items": {"type": "string"}},
+    "change_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "event", "action"],
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "event": {"enum": ["alarm_A", "alarm_B", "incident", "model_update", "workflow_change", "scheduled_review"]},
+          "action": {"type": "string"}
+        }
+      }
+    },
+    "next_review": {"type": "string", "format": "date"},
+    "signature": {"type": "string", "description": "Detached signature (e.g. JWS) over the canonical JSON of this version."}
+  },
+  "$defs": {
+    "estimate": {
+      "type": "object",
+      "required": ["value", "ci95", "n"],
+      "properties": {
+        "value": {"type": "number", "minimum": 0, "maximum": 1},
+        "ci95": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "n": {"type": "integer", "minimum": 0},
+        "baseline": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "metricSet": {
+      "type": "object",
+      "properties": {
+        "sensitivity": {"$ref": "#/$defs/estimate"},
+        "specificity": {"$ref": "#/$defs/estimate"},
+        "subgroups": {"type": "array", "items": {"type": "object", "required": ["name", "sensitivity"], "properties": {"name": {"type": "string"}, "sensitivity": {"$ref": "#/$defs/estimate"}}}}
+      }
+    },
+    "window": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {"start": {"type": "string", "format": "date"}, "end": {"type": "string", "format": "date"}}
+    },
+    "status": {"enum": ["in_control", "alarm_under_review", "action_taken", "insufficient_data"]}
+  }
+}
