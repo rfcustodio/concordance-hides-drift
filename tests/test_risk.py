@@ -43,7 +43,7 @@ def test_report_referenced_error_equals_override_rate():
 
 
 def test_missed_errors_identity_without_harmful_override():
-    # with o = 0:  E[e (1 - c)] = E[e] - override rate   (Proposition 2)
+    # with o = 0:  E[e (1 - c)] = E[e] - override rate   (Proposition 3.3)
     e, c, _ = rand_state()
     o = np.zeros_like(e)
     missed = np.sum(cells.w * e * (1 - c), axis=-1)

@@ -25,9 +25,9 @@ Risk is the severity-weighted expected final error,
 
 The module also implements the exact decomposition of R(t) - R(0) into an
 algorithmic main effect, a behavioural main effect and an interaction term
-(Proposition 1 of the manuscript), the concordance (agreement) between AI and
+(Proposition 3.1 of the manuscript), the concordance (agreement) between AI and
 final report, and the report-referenced estimators that are biased by
-deference (Propositions 2 and 3).
+deference (Propositions 3.3 and 3.4).
 """
 from __future__ import annotations
 
@@ -95,7 +95,7 @@ def risk(cells: Cells, e, c, o) -> np.ndarray:
 
 
 def decompose(cells: Cells, e0, c0, o0, e1, c1, o1) -> dict:
-    """Exact decomposition of R1 - R0 (Proposition 1).
+    """Exact decomposition of R1 - R0 (Proposition 3.1).
 
     With m = 1 - c, de = e1 - e0, dm = m1 - m0, do = o1 - o0:
 
@@ -134,7 +134,7 @@ def report_referenced_error(cells: Cells, e, c, o) -> np.ndarray:
     """AI error rate estimated with the (AI-influenced) final report as reference.
 
     Because the report differs from the AI only where the clinician overrode it,
-    this estimator equals the override rate (Proposition 3).  Its bias relative to
+    this estimator equals the override rate (Proposition 3.4).  Its bias relative to
     the true AI error rate E[e] is  -E[e (1 - c)] + E[(1 - e) o].
     """
     return disagreement(cells, e, c, o)

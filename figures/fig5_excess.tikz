@@ -1,4 +1,4 @@
-% Fig. 7. Excess harm after drift onset by scenario and strategy (E4).
+% Fig. 5. Excess harm after drift onset by scenario and strategy (E4).
 % Dot: mean over replicates; line: 2.5th to 97.5th percentile.
 \pgfplotstableread[col sep=comma]{\datapath/e4_bars_S1_algorithmic.csv}\cdbarlabels
 \begin{tikzpicture}
@@ -10,21 +10,21 @@
   y dir=reverse, xmajorgrids, grid style={okGrey!25},
   every axis plot/.append style={mark size=1.6pt}]
 \nextgroupplot[title={S1 algorithmic}, xmax=1400]
-  \addplot[okGrey, only marks, mark=none, error bars/.cd, x dir=both, x explicit]
+  \addplot[okGrey, only marks, mark=none, mark size=0pt, error bars/.cd, x dir=both, x explicit]
     table[x=int_mid, y expr={6-\thisrow{idx}}, x error=int_half, col sep=comma] {\datapath/e4_bars_S1_algorithmic.csv};
   \addplot[okBlack, only marks, mark=*] table[x=excess_per_100k_mean, y expr={6-\thisrow{idx}}, col sep=comma] {\datapath/e4_bars_S1_algorithmic.csv};
 \nextgroupplot[title={S2 behavioural}, xmax=1400]
-  \addplot[okGrey, only marks, mark=none, error bars/.cd, x dir=both, x explicit]
+  \addplot[okGrey, only marks, mark=none, mark size=0pt, error bars/.cd, x dir=both, x explicit]
     table[x=int_mid, y expr={6-\thisrow{idx}}, x error=int_half, col sep=comma] {\datapath/e4_bars_S2_behavioural.csv};
   \addplot[okBlack, only marks, mark=*] table[x=excess_per_100k_mean, y expr={6-\thisrow{idx}}, col sep=comma] {\datapath/e4_bars_S2_behavioural.csv};
 \nextgroupplot[title={S3 coupled}, xmax=1400]
-  \addplot[okGrey, only marks, mark=none, error bars/.cd, x dir=both, x explicit]
+  \addplot[okGrey, only marks, mark=none, mark size=0pt, error bars/.cd, x dir=both, x explicit]
     table[x=int_mid, y expr={6-\thisrow{idx}}, x error=int_half, col sep=comma] {\datapath/e4_bars_S3_coupled.csv};
   \addplot[okBlack, only marks, mark=*] table[x=excess_per_100k_mean, y expr={6-\thisrow{idx}}, col sep=comma] {\datapath/e4_bars_S3_coupled.csv};
 \nextgroupplot[title={S4 masked}, xmax=1400]
-  \addplot[okGrey, only marks, mark=none, error bars/.cd, x dir=both, x explicit]
+  \addplot[okGrey, only marks, mark=none, mark size=0pt, error bars/.cd, x dir=both, x explicit]
     table[x=int_mid, y expr={6-\thisrow{idx}}, x error=int_half, col sep=comma] {\datapath/e4_bars_S4_masked.csv};
-  \addplot[okVerm, only marks, mark=*] table[x=excess_per_100k_mean, y expr={6-\thisrow{idx}}, col sep=comma] {\datapath/e4_bars_S4_masked.csv};
+  \addplot[okBlack, only marks, mark=*] table[x=excess_per_100k_mean, y expr={6-\thisrow{idx}}, col sep=comma] {\datapath/e4_bars_S4_masked.csv};
 \end{groupplot}
 \node[font=\small, anchor=north] at ($(group c2r1.south east)!0.5!(group c3r1.south west)+(0,-7mm)$) {Excess severity-weighted errors per $10^5$ cases after drift onset};
 \end{tikzpicture}

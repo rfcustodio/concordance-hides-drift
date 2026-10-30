@@ -1,7 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software or data, please cite the article and this archive."
 title: "When Concordance Hides Drift: simulation code, data, figures and label schema"
-version: 1.0.0
+version: 1.0.1
+doi: 10.5281/zenodo.23809377
 date-released: 2026-10-30
 license: MIT
 authors:

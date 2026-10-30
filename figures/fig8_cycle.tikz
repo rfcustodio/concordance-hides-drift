@@ -1,4 +1,4 @@
-% Fig. 9. Algorithmovigilance cycle for an imaging department, with the
+% Fig. 8. Algorithmovigilance cycle for an imaging department, with the
 % informatics data source behind each estimator.
 \begin{tikzpicture}[node distance=8mm and 8mm]
   \node[cd box, text width=47mm, fill=okSky!10] (mon) {\textbf{1. Measure}\\$\hat e_t$: delayed truth, audit reads\\$\hat c_t$: sentinels, audit reads};

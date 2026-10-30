@@ -1,23 +1,21 @@
 % Fig. 3. Non-identifiability of concordance (E2).
 \begin{tikzpicture}
 \begin{groupplot}[cd/base,
-  group style={group size=2 by 1, horizontal sep=28mm},
+  group style={group size=2 by 1, horizontal sep=44mm},
   width=54mm, height=50mm]
-\nextgroupplot[title={(a) Risk, lines of equal concordance}, view={0}{90},
+\nextgroupplot[title={(a) Risk and lines of equal concordance}, view={0}{90},
   xmin=0, xmax=1, ymin=0.05, ymax=0.95, enlargelimits=false, axis on top,
   xlabel={Algorithmic drift level $a$}, ylabel={Verification probability $v$},
   colormap name=cdrisk, colorbar,
-  colorbar style={width=2.5mm, title={\scriptsize $R$/1000}, tick label style={font=\scriptsize}}, ytick={0.2,0.4,0.6,0.8}]
+  colorbar style={width=2.5mm, tick label style={font=\scriptsize}}, ytick={0.2,0.4,0.6,0.8}]
   \addplot3[surf, shader=interp, mesh/cols=51, point meta=explicit]
     table[x=a, y=v, z=R, meta=R, col sep=comma] {\datapath/e2_grid.csv};
   \addplot3[black, thick, dashed] table[x=a, y=v, z expr=0, col sep=comma] {\datapath/e2_iso_level0.csv};
   \addplot3[black, very thick]     table[x=a, y=v, z expr=0, col sep=comma] {\datapath/e2_iso_level1.csv};
   \addplot3[black, thick, dotted]  table[x=a, y=v, z expr=0, col sep=comma] {\datapath/e2_iso_level2.csv};
-  \node[font=\scriptsize, fill=white, inner sep=1pt, anchor=north west] at (axis cs:0.03,0.92)
-    {solid: baseline concordance};
-\nextgroupplot[title={(b) Risk at baseline concordance},
-  xmin=0, xmax=1, ymin=10, ymax=26, xlabel={Algorithmic drift level $a$}, ylabel={$R$ per 1000 cases},
-  legend style={at={(0.03,0.97)}, anchor=north west}]
+\nextgroupplot[title={(b) Risk at validated concordance},
+  xmin=0, xmax=1, ymin=10, ymax=32, ytick={10,15,20,25,30}, xlabel={Algorithmic drift level $a$}, ylabel={$R$ per 1000 cases},
+  legend style={at={(0.03,0.97)}, anchor=north west, font=\scriptsize, fill=none, draw=none}]
   \addplot[st none] table[x=a, y=R, col sep=comma] {\datapath/e2_iso_level1.csv};
   \addlegendentry{risk}
   \addplot[okGrey, dashed] table[x=a, y=R0, col sep=comma] {\datapath/e2_iso_level1.csv};

@@ -1,4 +1,4 @@
-% Fig. 8. Audit design: probability of detecting each drift within one year
+% Fig. 7. Audit design: probability of detecting each drift within one year
 % of onset, by number of AI-blinded double reads per day and sentinel rate (E5).
 \begin{tikzpicture}
 \begin{groupplot}[cd/base,
@@ -6,15 +6,16 @@
   width=62mm, height=50mm, xmode=log, xmin=1.2, xmax=36, ymin=0, ymax=1.03,
   xtick={1.5,3,7.5,15,30}, xticklabels={1.5,3,7.5,15,30},
   xlabel={Audit double reads per day},
-  legend style={at={(0.97,0.03)}, anchor=south east}, unbounded coords=discard, filter discard warning=false]
-\nextgroupplot[title={(a) Algorithmic drift (S1)}, ylabel={P(detected within 1 year)}]
+  legend style={legend columns=3, font=\small, draw=none, /tikz/every even column/.append style={column sep=4mm}}, unbounded coords=discard, filter discard warning=false]
+\nextgroupplot[title={(a) Algorithmic drift (S1)}, ylabel={P(detected within 1 year)}, legend to name=audleg]
   \addplot[okBlack, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent0.csv};
   \addplot[okGreen, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent2.csv};
   \addplot[okPurple, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pA_365, col sep=comma] {\datapath/e5_sent4.csv};
-\nextgroupplot[title={(b) Behavioural drift (S2)}, legend style={at={(0.97,0.55)}, anchor=east}]
+  \legend{0 sentinels/day, 2 sentinels/day, 4 sentinels/day}
+\nextgroupplot[title={(b) Behavioural drift (S2)}]
   \addplot[okBlack, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent0.csv};
   \addplot[okGreen, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent2.csv};
   \addplot[okPurple, thick, mark=*, mark size=1.4pt] table[x=double_reads_per_day, y=pB_365, col sep=comma] {\datapath/e5_sent4.csv};
-  \legend{0 sentinels/day, 2 sentinels/day, 4 sentinels/day}
 \end{groupplot}
+\node[anchor=north] at ($(group c1r1.south)!0.5!(group c2r1.south)+(0,-9mm)$) {\pgfplotslegendfromname{audleg}};
 \end{tikzpicture}

@@ -1,5 +1,4 @@
-% Fig. 6. Exact decomposition of risk over time, coupled drift without
-% monitoring (scenario S3, E4).
+% Fig. S1. Exact risk decomposition over time, coupled drift, no monitoring (E4, S3).
 \begin{tikzpicture}
 \begin{axis}[cd/base, width=96mm, height=56mm, xmin=0, xmax=1095, ymin=0,
   xtick={0,365,730,1095}, xticklabels={0,1,2,3}, xlabel={Years since deployment},

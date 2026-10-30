@@ -17,7 +17,7 @@ is in this repository.
 
 | Path | Content |
 | --- | --- |
-| `src/cdrift/risk.py` | Error and interception model; exact risk decomposition (Proposition 1); concordance and decision-referenced estimators (Propositions 2 and 3) |
+| `src/cdrift/risk.py` | Error and interception model; exact risk decomposition (Proposition 3.1); concordance and decision-referenced estimators (Propositions 3.3 and 3.4) |
 | `src/cdrift/sim.py` | Vectorised Monte Carlo simulation of an AI-assisted reading service: trust dynamics, workload, deskilling, algorithmic drift, CUSUM monitoring, remediation |
 | `src/cdrift/params.py` | All parameters with their default values |
 | `experiments/run_all.py` | Experiments E1 to E6; writes CSV files to `results/` |
@@ -36,11 +36,11 @@ is in this repository.
 | Fig. 2 | `figures/fig2_landscape.tikz` | E1 |
 | Fig. 3 | `figures/fig3_identifiability.tikz` | E2 |
 | Fig. 4 | `figures/fig4_incorporation.tikz` | E3 |
-| Fig. 5 | `figures/fig5_timecourse.tikz` | E4, scenario S4 |
-| Fig. 6 | `figures/fig7_excess.tikz` | E4 |
-| Fig. 7 | `figures/fig8_audit.tikz` | E5 |
-| Fig. 8 | `figures/fig9_cycle.tikz` | conceptual |
-| Supplementary | `figures/fig6_decomposition.tikz` | E4, scenario S3 |
+| Fig. 5 | `figures/fig5_excess.tikz` | E4 |
+| Fig. 6 | `figures/fig6_timecourse.tikz` | E4, scenario S4 |
+| Fig. 7 | `figures/fig7_audit.tikz` | E5 |
+| Fig. 8 | `figures/fig8_cycle.tikz` | conceptual |
+| Fig. S1 (not in the article) | `figures/figS1_decomposition.tikz` | E4, scenario S3 |
 
 Table 2 of the article is `results/e4_detection_table.tex`; the full summary is
 `results/e4_summary.csv` and `results/summary.md`.
@@ -102,4 +102,6 @@ Code: MIT (`LICENSE`). Figures, data, schema and example: CC BY 4.0
 
 ## How to cite
 
-See `CITATION.cff`. The archived version has a Zenodo DOI.
+See `CITATION.cff`. All versions are archived on Zenodo; the concept DOI
+[10.5281/zenodo.23809377](https://doi.org/10.5281/zenodo.23809377) always
+resolves to the latest version.

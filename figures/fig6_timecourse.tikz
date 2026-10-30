@@ -1,4 +1,4 @@
-% Fig. 5. Masked coupled drift (scenario S4): risk under each monitoring
+% Fig. 6. Masked coupled drift (scenario S4): risk under each monitoring
 % strategy, and what the monitored signals show (E4).
 \begin{tikzpicture}
 \begin{groupplot}[cd/base,
