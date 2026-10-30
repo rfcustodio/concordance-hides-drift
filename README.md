@@ -24,7 +24,7 @@ is in this repository.
 | `experiments/postprocess.py` | Tables derived for plotting and for the article |
 | `results/` | Outputs of the run reported in the article (seed 2026, 400 replicates, 1,000 calibration replicates) and `run_metadata.json` |
 | `figures/` | Every figure as TikZ/pgfplots source reading `results/`; `all_figures.pdf` is the compiled set |
-| `schema/` | JSON Schema of the Dynamic AI Safety Label |
+| `schema/` | JSON Schema of the Dynamic AI Safety Label; each surveillance estimate states its estimand, population and denominator, and an estimate that cannot be obtained (for example the harmful-override rate without a random audit) is reported as not estimable or not available |
 | `examples/` | A fictional label that validates against the schema |
 | `tests/` | Unit tests of the identities and of the false-alarm calibration |
 

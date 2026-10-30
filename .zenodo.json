@@ -2,7 +2,7 @@
   "title": "When Concordance Hides Drift: simulation code, data, figures and label schema",
   "upload_type": "software",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "creators": [
     {
       "name": "Ralo e Borges, Carmem Lúcia",
@@ -28,5 +28,5 @@
     "simulation"
   ],
   "notes": "Supporting material for a manuscript submitted to the Journal of Imaging Informatics in Medicine. C.L.R.B. was supported by a doctoral scholarship from FAPESP, grant 2024/14707-3.",
-  "description": "Simulation code, simulated data, figure sources and the JSON Schema of the Dynamic AI Safety Label for the article \"When Concordance Hides Drift: Jointly Monitoring Clinical AI Performance and Clinician Interception After Deployment, with an Application to Medical Imaging\", submitted to the Journal of Imaging Informatics in Medicine. Version 1.0.1 renumbers the figure sources to match the article and fixes overlapping labels in Figures 3, 5 and 7; code, parameters and results are unchanged."
+  "description": "Simulation code, simulated data, figure sources and the JSON Schema of the Dynamic AI Safety Label for the article \"When Concordance Hides Drift: Jointly Monitoring Clinical AI Performance and Clinician Interception After Deployment, with an Application to Medical Imaging\", submitted to the Journal of Imaging Informatics in Medicine. Version 1.0.2 extends the label schema so that each surveillance estimate states its estimand, population and basis, separates the sentinel-specific interception rate from interception of real AI errors, and allows an estimate that cannot be obtained (for example the harmful-override rate without a random audit) to be reported as not estimable or not available. Code, parameters and results are unchanged."
 }
