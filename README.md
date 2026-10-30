@@ -1,5 +1,7 @@
 # When Concordance Hides Drift
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23809378.svg)](https://doi.org/10.5281/zenodo.23809378)
+
 Code, simulated data, figure sources and a machine-readable label schema for the
 article
 
